@@ -1,3 +1,3 @@
-import { baseConfig } from '@workspace/linter-config';
+import { baseConfig } from '@containerkit/linter-config';
 
 export default baseConfig;

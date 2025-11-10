@@ -1,0 +1,28 @@
+{
+  "name": "containerkit",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "imports": {
+    "#*": [
+      "./src/*.ts",
+      "./src/*.tsx",
+      "./src/*/index.ts"
+    ]
+  },
+  "main": "src/index.ts",
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@monaco-editor/react": "^4.7.0",
+    "clsx": "^2.1.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@containerkit/core": "workspace:*",
+    "@containerkit/linter-config": "workspace:*",
+    "@containerkit/typescript-config": "workspace:*"
+  }
+}

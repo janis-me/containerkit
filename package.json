@@ -15,11 +15,12 @@
     "test": "vitest"
   },
   "devDependencies": {
+    "@containerkit/linter-config": "workspace:*",
+    "@containerkit/typescript-config": "workspace:*",
     "@ianvs/prettier-plugin-sort-imports": "catalog:format",
+    "@maz-ui/changelogen-monorepo": "catalog:script",
     "@playwright/test": "catalog:test",
     "@vitest/browser": "catalog:test",
-    "@workspace/linter-config": "workspace:*",
-    "@workspace/typescript-config": "workspace:*",
     "eslint": "catalog:lint",
     "jiti": "catalog:lint",
     "prettier": "catalog:format",
@@ -28,7 +29,7 @@
     "typescript": "catalog:build",
     "vitest": "catalog:test"
   },
-  "packageManager": "pnpm@10.19.0",
+  "packageManager": "pnpm@10.21.0",
   "engines": {
     "node": ">=22.11.0"
   }
