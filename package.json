@@ -1,0 +1,35 @@
+{
+  "name": "@janis.me/repo-starter",
+  "description": "A starter template for pnpm-based web repositories",
+  "keywords": [
+    "janis.me"
+  ],
+  "homepage": "https://janis.me",
+  "license": "MIT",
+  "author": "Janis Jansen",
+  "type": "module",
+  "scripts": {
+    "deps": "pnpm taze",
+    "format": "prettier --write .",
+    "lint": "eslint --flag v10_config_lookup_from_file .",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "catalog:format",
+    "@playwright/test": "catalog:test",
+    "@vitest/browser": "catalog:test",
+    "@workspace/linter-config": "workspace:*",
+    "@workspace/typescript-config": "workspace:*",
+    "eslint": "catalog:lint",
+    "jiti": "catalog:lint",
+    "prettier": "catalog:format",
+    "prettier-plugin-packagejson": "catalog:format",
+    "taze": "catalog:script",
+    "typescript": "catalog:build",
+    "vitest": "catalog:test"
+  },
+  "packageManager": "pnpm@10.19.0",
+  "engines": {
+    "node": ">=22.11.0"
+  }
+}
