@@ -1,0 +1,13 @@
+@import '@xterm/xterm/css/xterm.css';
+
+.containerkit-editor {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.containerkit-terminal {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}

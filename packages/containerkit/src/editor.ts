@@ -1,5 +1,8 @@
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 
+import { ABC } from '#abc';
+import type { Containerkit } from '#containerkit';
+
 export interface EditorListenerCallbacks {
   onMount: (editor: monaco.editor.IStandaloneCodeEditor) => void;
   onChange: (value: string, event: monaco.editor.IModelContentChangedEvent) => void;
@@ -13,20 +16,22 @@ export type EditorListeners = {
 
 export type MonacoOptions = monaco.editor.IStandaloneEditorConstructionOptions;
 
-export class Editor {
-  private _editor: monaco.editor.IStandaloneCodeEditor | undefined;
-  private _monacoOptions: MonacoOptions;
-  private _onChangeSubscription: monaco.IDisposable | undefined;
+export class Editor extends ABC {
+  protected _editor: monaco.editor.IStandaloneCodeEditor | undefined;
+  protected _monacoOptions: MonacoOptions | undefined;
+  protected _onChangeSubscription: monaco.IDisposable | undefined;
 
-  private _preventOnChangeTrigger = false;
+  protected _preventOnChangeTrigger = false;
 
-  private _listeners: EditorListeners = {};
+  protected _listeners: EditorListeners = {};
 
-  public constructor(monacoOptions: MonacoOptions = {}) {
+  public constructor(instance?: Containerkit, monacoOptions: MonacoOptions | undefined = undefined) {
+    super(instance);
+
     this._monacoOptions = monacoOptions;
   }
 
-  private handleMount() {
+  protected handleMount() {
     if (!this._editor) {
       throw new Error('handleMound called, but editor is not yet initialized');
     }
@@ -41,7 +46,13 @@ export class Editor {
     });
   }
 
+  public attach(instance: Containerkit) {
+    this._containerKitInstance = instance;
+  }
+
   public init(element: HTMLElement) {
+    element.classList.add('containerkit-editor');
+
     this._editor = monaco.editor.create(element, this._monacoOptions);
     this.handleMount();
 

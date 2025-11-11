@@ -1,7 +1,7 @@
 {
   "name": "containerkit",
-  "version": "0.1.0",
-  "private": false,
+  "version": "0.0.0",
+  "private": true,
   "type": "module",
   "imports": {
     "#*": [
@@ -10,19 +10,38 @@
       "./src/*/index.ts"
     ]
   },
-  "main": "src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles": "./dist/containerkit.css"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
+    "build": "tsdown",
+    "build:watch": "tsdown --watch",
+    "format": "prettier . --write",
+    "test": "pnpm -w test --project=containerkit",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@monaco-editor/react": "^4.7.0",
-    "clsx": "^2.1.1",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "@webcontainer/api": "^1.6.1",
+    "@xterm/addon-fit": "^0.10.0",
+    "@xterm/addon-web-links": "^0.11.0",
+    "@xterm/xterm": "^5.5.0",
+    "monaco-editor": "^0.54.0"
   },
   "devDependencies": {
-    "@containerkit/core": "workspace:*",
     "@containerkit/linter-config": "workspace:*",
-    "@containerkit/typescript-config": "workspace:*"
+    "@containerkit/typescript-config": "workspace:*",
+    "rollup-plugin-copy": "^3.5.0",
+    "tsdown": "catalog:build",
+    "typescript": "catalog:build"
   }
 }

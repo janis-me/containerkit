@@ -1,3 +1,7 @@
-import type { MyExampleType } from '../../core/src';
+import { Containerkit } from './containerkit';
 
-export const x: MyExampleType = 'example';
+export { Terminal } from './terminal';
+export { Editor } from './editor';
+export { Containerkit } from './containerkit';
+
+export default Containerkit;
