@@ -4,10 +4,18 @@
   width: 100%;
   height: 100%;
   box-sizing: border-box;
+  overflow: hidden;
+
+  .monaco-editor {
+    position: absolute;
+    width: 100% !important;
+    height: 100% !important;
+  }
 }
 
 .containerkit-terminal {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
+  overflow: hidden;
 }

@@ -12,7 +12,7 @@ const containerkit = new Containerkit();
 await containerkit.init('vite-vanilla-test');
 
 const terminal = new Terminal(containerkit);
-const editor = new Editor();
+const editor = new Editor(containerkit, { language: 'typescript', path: 'index.ts' });
 
 const editorContainer = document.createElement('div');
 const terminalContainer = document.createElement('div');
