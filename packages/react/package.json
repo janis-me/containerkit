@@ -31,7 +31,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "containerkit": "workspace:*",
+    "@containerkit/core": "workspace:*",
     "react": "catalog:react",
     "react-dom": "catalog:react"
   },

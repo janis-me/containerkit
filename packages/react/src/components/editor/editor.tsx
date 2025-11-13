@@ -1,6 +1,7 @@
-import type { EditorOptions, MonacoOptions } from 'containerkit';
-import { Editor as _Editor } from 'containerkit';
 import { useEffect, useRef } from 'react';
+
+import type { EditorOptions, MonacoOptions } from '@containerkit/core';
+import { Editor as _Editor } from '@containerkit/core';
 
 import { useContainerkit } from '#context';
 

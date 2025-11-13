@@ -185,9 +185,9 @@ importers:
 
   examples/vite-vanilla:
     dependencies:
-      containerkit:
+      '@containerkit/core':
         specifier: workspace:*
-        version: link:../../packages/containerkit
+        version: link:../../packages/core
     devDependencies:
       '@containerkit/linter-config':
         specifier: workspace:*
@@ -202,7 +202,7 @@ importers:
         specifier: catalog:build
         version: 7.2.2(@types/node@22.19.0)(jiti@2.6.1)(yaml@2.8.1)
 
-  packages/containerkit:
+  packages/core:
     dependencies:
       '@monaco-editor/loader':
         specifier: ^1.6.1
@@ -241,9 +241,9 @@ importers:
 
   packages/react:
     dependencies:
-      containerkit:
+      '@containerkit/core':
         specifier: workspace:*
-        version: link:../containerkit
+        version: link:../core
       react:
         specifier: catalog:react
         version: 19.2.0

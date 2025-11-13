@@ -1,4 +1,4 @@
-import { Containerkit, Editor, Terminal } from 'containerkit';
+import { Containerkit, Editor, Terminal } from '@containerkit/core';
 
 import './main.css';
 

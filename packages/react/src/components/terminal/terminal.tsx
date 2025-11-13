@@ -1,6 +1,7 @@
-import type { XtermOptions } from 'containerkit';
-import { Terminal as _Terminal } from 'containerkit';
 import { useEffect, useRef } from 'react';
+
+import type { XtermOptions } from '@containerkit/core';
+import { Terminal as _Terminal } from '@containerkit/core';
 
 import { useContainerkit } from '#context';
 

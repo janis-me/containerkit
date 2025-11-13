@@ -1,6 +1,7 @@
-import Containerkit from 'containerkit';
 import * as React from 'react';
 import { createContext, useEffect, useReducer } from 'react';
+
+import Containerkit from '@containerkit/core';
 
 type Action = {
   type: 'setContainerkitInstance';

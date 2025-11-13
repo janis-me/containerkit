@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "containerkit": "workspace:*"
+    "@containerkit/core": "workspace:*"
   },
   "devDependencies": {
     "@containerkit/linter-config": "workspace:*",
