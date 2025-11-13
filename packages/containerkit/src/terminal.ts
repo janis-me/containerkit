@@ -8,6 +8,8 @@ import { ABC } from '#abc';
 import type { Containerkit } from '#containerkit';
 import { parseOSCSequence, type OSCSequenceType } from '#utils';
 
+export type { XtermOptions };
+
 export interface TerminalListenerCallbacks {
   onResize: (terminalMeta: { rows: number; cols: number }) => void;
   onMount: (xterm: XTerm) => void;
@@ -64,7 +66,7 @@ export class Terminal extends ABC {
 
     this._containerKitInstance = instance;
 
-    this._xterm = new XTerm(xtermOptions);
+    this._xterm = new XTerm({ ...DEFAULT_XTERM_OPTIONS, ...xtermOptions });
     this._fitAddon = new FitAddon();
     this._webLinksAddon = new WebLinksAddon();
 
@@ -219,7 +221,7 @@ export class Terminal extends ABC {
    *
    * @returns A cleanup function to dispose the terminal and its addons.
    */
-  public init(element: HTMLElement, command = '/bin/jsh', args: string[] = []): () => void {
+  public init(element: HTMLElement, command = '/bin/jsh', args: string[] = []): Promise<() => void> {
     if (!this._containerKitInstance) {
       throw new Error('Terminal instance is not attached to a Containerkit instance');
     }
@@ -245,9 +247,9 @@ export class Terminal extends ABC {
     const shellArgs = command === '/bin/jsh' ? ['--osc', ...args] : args;
     void this._initTerminalStreams(command, shellArgs);
 
-    return () => {
+    return Promise.resolve(() => {
       this.dispose();
-    };
+    });
   }
 
   public dispose() {

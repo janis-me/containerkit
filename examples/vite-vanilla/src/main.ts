@@ -1,27 +1,65 @@
 import { Containerkit, Editor, Terminal } from 'containerkit';
 
-import 'containerkit/styles';
 import './main.css';
 
-const root = document.getElementById('root');
+async function setupEditor(instance: Containerkit, root: HTMLElement) {
+  const editorContainer = document.createElement('div');
+  editorContainer.id = 'editor-container';
+  root.appendChild(editorContainer);
 
-if (!root) {
-  throw new Error('Root element not found');
+  const editor = new Editor(
+    instance,
+    {
+      language: 'cpp',
+      path: 'index.cpp',
+      value: 'const x = 2; // test',
+    },
+    {
+      theme: 'vs-dark',
+    },
+  );
+
+  editor.setListener('onSave', (value: string) => {
+    console.log('File saved with content:', value);
+  });
+
+  return editor.init(editorContainer);
 }
-const containerkit = new Containerkit();
-await containerkit.init('vite-vanilla-test');
 
-const terminal = new Terminal(containerkit);
-const editor = new Editor(containerkit, { language: 'typescript', path: 'index.ts' });
+async function setupTerminal(instance: Containerkit, root: HTMLElement) {
+  const terminalContainer = document.createElement('div');
+  terminalContainer.id = 'terminal-container';
+  root.appendChild(terminalContainer);
 
-const editorContainer = document.createElement('div');
-const terminalContainer = document.createElement('div');
+  const terminal = new Terminal(instance, {
+    theme: {
+      background: '#1e1e1e',
+      foreground: '#c5c5c5',
+      cursor: '#c5c5c5',
+      blue: '#569cd6',
+    },
+  });
+  return terminal.init(terminalContainer);
+}
 
-editorContainer.id = 'editor-container';
-terminalContainer.id = 'terminal-container';
+async function main() {
+  const root = document.getElementById('root');
 
-root.appendChild(editorContainer);
-root.appendChild(terminalContainer);
+  if (!root) {
+    throw new Error('Root element not found');
+  }
 
-terminal.init(terminalContainer);
-editor.init(editorContainer);
+  const containerkit = new Containerkit();
+  await containerkit.init('vite-vanilla-test');
+
+  const cleanupEditor = await setupEditor(containerkit, root);
+  const cleanupTerminal = await setupTerminal(containerkit, root);
+
+  return () => {
+    cleanupEditor();
+    cleanupTerminal();
+    containerkit.dispose();
+  };
+}
+
+await main();

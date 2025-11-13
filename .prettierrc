@@ -9,6 +9,7 @@
     "<BUILTIN_MODULES>",
     "<THIRD_PARTY_MODULES>",
     "",
+    "^containerkit/(.*)$",
     "^@containerkit/(.*)$",
     "",
     "[#]",

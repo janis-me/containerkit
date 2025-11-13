@@ -10,5 +10,11 @@ export abstract class ABC {
     this._containerKitInstance = instance;
   }
 
+  /**
+   * Attach the component to a Containerkit instance.
+   * For "attaching" to an HTML element, use the `init` method instead.
+   */
   public abstract attach(instance: Containerkit): void;
+
+  public abstract init(...args: unknown[]): Promise<() => void>;
 }

@@ -1,6 +1,4 @@
-import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
-
-export type Monaco = typeof monaco;
+import type { mncn, Monaco } from '#monaco';
 
 /**
  * OSC (Operating System Command) sequence types
@@ -77,7 +75,7 @@ export function getOrCreateModel(
   value: string,
   language: string,
   path: string,
-): monaco.editor.ITextModel {
+): mncn.editor.ITextModel {
   const uri = monaco.Uri.parse(path);
   let model = monaco.editor.getModel(uri);
 

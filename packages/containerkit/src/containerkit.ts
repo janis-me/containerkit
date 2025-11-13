@@ -3,13 +3,18 @@ import type { FileSystemTree, FSWatchCallback, FSWatchOptions, SpawnOptions } fr
 
 import type { ABC } from '#abc';
 import { Editor } from '#editor';
+import type { Monaco } from '#monaco';
 import { Terminal } from '#terminal';
+
+import './containerkit.css';
 
 export class Containerkit {
   protected _webContainerinstance: WebContainer | undefined;
   protected _terminal: Terminal | undefined;
 
-  public async init(name: string) {
+  protected _monaco: Monaco | undefined;
+
+  public async init(name: string): Promise<() => void> {
     if (this._webContainerinstance) {
       throw new Error('Instance is already initialized');
     }

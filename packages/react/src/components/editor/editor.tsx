@@ -1,0 +1,32 @@
+import type { EditorOptions, MonacoOptions } from 'containerkit';
+import { Editor as _Editor } from 'containerkit';
+import { useEffect, useRef } from 'react';
+
+import { useContainerkit } from '#context';
+
+export interface EditorProps {
+  editorOptions?: EditorOptions | undefined;
+  monacoOptions?: MonacoOptions | undefined;
+}
+
+export function Editor({ editorOptions, monacoOptions }: EditorProps) {
+  const containerkitInstance = useContainerkit();
+
+  const editorContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!editorContainerRef.current || !containerkitInstance) return;
+
+    const editorInstance = new _Editor(containerkitInstance, editorOptions, monacoOptions);
+    editorInstance
+      .init(editorContainerRef.current)
+      .then(() => {
+        containerkitInstance.attach(editorInstance);
+      })
+      .catch((error: unknown) => {
+        console.error('Failed to initialize Editor instance:', error);
+      });
+  }, [editorOptions, monacoOptions, containerkitInstance]);
+
+  return <div ref={editorContainerRef}></div>;
+}

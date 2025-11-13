@@ -1,5 +1,5 @@
 {
-  "name": "example-vite-vanilla",
+  "name": "example-vite-react",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,11 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "containerkit": "workspace:*"
+    "@containerkit/react": "workspace:*",
+    "react": "catalog:react",
+    "react-dom": "catalog:react"
   },
   "devDependencies": {
     "@containerkit/linter-config": "workspace:*",
     "@containerkit/typescript-config": "workspace:*",
+    "@types/react": "catalog:react",
+    "@types/react-dom": "catalog:react",
     "typescript": "catalog:build",
     "vite": "catalog:build"
   }

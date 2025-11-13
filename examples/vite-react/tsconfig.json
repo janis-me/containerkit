@@ -1,5 +1,5 @@
 {
-  "extends": "@containerkit/typescript-config/base.json",
+  "extends": "@containerkit/typescript-config/react.json",
   "compilerOptions": {
     "types": ["vite/client"]
   },

@@ -1,3 +1,3 @@
-import { reactConfig } from '@containerkit/linter-config';
+import { baseConfig } from '@containerkit/linter-config';
 
-export default reactConfig;
+export default baseConfig;

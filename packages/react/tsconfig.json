@@ -1,0 +1,5 @@
+{
+  "extends": "@containerkit/typescript-config/react.json",
+  "include": ["*.config.ts", "src"],
+  "exclude": ["node_modules", "dist"]
+}

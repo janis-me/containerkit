@@ -1,5 +1,5 @@
 {
-  "name": "containerkit",
+  "name": "@containerkit/react",
   "version": "0.1.0",
   "private": false,
   "type": "module",
@@ -31,17 +31,15 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@monaco-editor/loader": "^1.6.1",
-    "@webcontainer/api": "^1.6.1",
-    "@xterm/addon-fit": "^0.10.0",
-    "@xterm/addon-web-links": "^0.11.0",
-    "@xterm/xterm": "^5.5.0",
-    "monaco-editor": "^0.54.0"
+    "containerkit": "workspace:*",
+    "react": "catalog:react",
+    "react-dom": "catalog:react"
   },
   "devDependencies": {
     "@containerkit/linter-config": "workspace:*",
     "@containerkit/typescript-config": "workspace:*",
-    "rollup-plugin-copy": "^3.5.0",
+    "@types/react": "catalog:react",
+    "@types/react-dom": "catalog:react",
     "tsdown": "catalog:build",
     "typescript": "catalog:build"
   }
