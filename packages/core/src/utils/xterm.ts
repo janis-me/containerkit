@@ -69,17 +69,3 @@ export function parseOSCSequence(data: string): { type: OSCSequenceType } {
 
   return { type: 'none' };
 }
-
-export function getOrCreateModel(
-  monaco: Monaco,
-  value: string,
-  language: string,
-  path: string,
-): mncn.editor.ITextModel {
-  const uri = monaco.Uri.parse(path);
-  let model = monaco.editor.getModel(uri);
-
-  model ??= monaco.editor.createModel(value, language, uri);
-
-  return model;
-}

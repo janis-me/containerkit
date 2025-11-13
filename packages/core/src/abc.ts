@@ -17,4 +17,16 @@ export abstract class ABC {
   public abstract attach(instance: Containerkit): void;
 
   public abstract init(...args: unknown[]): Promise<() => void>;
+
+  public setInstance(instance: Containerkit) {
+    this._containerKitInstance = instance;
+  }
+
+  public dispose() {
+    if (this._containerKitInstance) {
+      this._containerKitInstance.detach(this);
+    }
+
+    this._containerKitInstance = undefined;
+  }
 }

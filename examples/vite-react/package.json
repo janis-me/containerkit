@@ -11,7 +11,8 @@
   "dependencies": {
     "@containerkit/react": "workspace:*",
     "react": "catalog:react",
-    "react-dom": "catalog:react"
+    "react-dom": "catalog:react",
+    "react-resizable-panels": "^3.0.6"
   },
   "devDependencies": {
     "@containerkit/linter-config": "workspace:*",

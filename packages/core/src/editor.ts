@@ -1,7 +1,6 @@
 import { ABC } from '#abc';
 import type { Containerkit } from '#containerkit';
-import { monaco, type mncn } from '#monaco';
-import { getOrCreateModel } from '#utils';
+import { getOrCreateModel, monaco, type mncn } from '#monaco';
 
 const DEFAULT_EDITOR_PATH = 'index.ts' as const;
 const DEFAULT_EDITOR_LANGUAGE = 'typescript' as const;
@@ -78,6 +77,7 @@ export class Editor extends ABC {
 
   public attach(instance: Containerkit) {
     this._containerKitInstance = instance;
+    instance.attach(this);
   }
 
   public async init(element: HTMLElement) {
@@ -104,14 +104,14 @@ export class Editor extends ABC {
     const model = getOrCreateModel(
       monaco,
       initialValue,
-      this._editorOptions?.language ?? DEFAULT_EDITOR_LANGUAGE,
+      this._editorOptions?.language,
       this._editorOptions?.path ?? DEFAULT_EDITOR_PATH,
     );
 
     this._editor = monaco.editor.create(element, {
       ...(this._monacoOptions ?? {}),
       model,
-      language: this._editorOptions?.language ?? DEFAULT_EDITOR_LANGUAGE,
+      language: this._editorOptions?.language as string,
     });
     this._editor.setModel(model);
 
@@ -223,6 +223,7 @@ export class Editor extends ABC {
   }
 
   public dispose() {
+    super.dispose();
     this._editor?.dispose();
     this._onChangeSubscription?.dispose();
     this._resizeObserver?.disconnect();

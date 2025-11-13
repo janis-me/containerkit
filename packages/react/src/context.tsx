@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { createContext, useEffect, useReducer } from 'react';
+import { createContext, use, useContext, useEffect, useReducer, useRef } from 'react';
 
 import Containerkit from '@containerkit/core';
 
@@ -38,31 +37,26 @@ function containerkitReducer(state: State, action: Action): State {
 
 function ContainerkitProvider({ children, instance, name }: ContainerkitProviderProps) {
   const [state, dispatch] = useReducer(containerkitReducer, DEFAULT_STATE);
+  const finalInstance = useRef(instance ? instance : new Containerkit());
 
   useEffect(() => {
-    if (instance) {
-      dispatch({ type: 'setContainerkitInstance', data: { instance } });
-    } else if (name) {
-      const instance = new Containerkit();
-      instance
-        .init(name)
-        .then(() => {
-          dispatch({ type: 'setContainerkitInstance', data: { instance } });
-        })
-        .catch((error: unknown) => {
-          console.error('Failed to initialize Containerkit instance:', error);
-        });
-    } else {
-      throw new Error('Either instance or name must be provided to ContainerkitProvider');
+    if (!finalInstance.current) return;
+
+    if (!finalInstance.current.booted && !finalInstance.current.booting) {
+      finalInstance.current.boot(name ?? 'default-project').then(() => {
+        dispatch({ type: 'setContainerkitInstance', data: { instance: finalInstance.current } });
+      });
+    } else if (finalInstance.current.booted) {
+      dispatch({ type: 'setContainerkitInstance', data: { instance: finalInstance.current } });
     }
-  }, [instance, name]);
+  }, [name, instance]);
 
   const value = { state, dispatch };
   return <ContainerkitStateContext.Provider value={value}>{children}</ContainerkitStateContext.Provider>;
 }
 
 function useContainerkitContext() {
-  const context = React.useContext(ContainerkitStateContext);
+  const context = useContext(ContainerkitStateContext);
   if (context === undefined) {
     throw new Error('useContainerkit must be used within a ContainerkitProvider');
   }

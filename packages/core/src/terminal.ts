@@ -6,7 +6,7 @@ import { Terminal as XTerm } from '@xterm/xterm';
 
 import { ABC } from '#abc';
 import type { Containerkit } from '#containerkit';
-import { parseOSCSequence, type OSCSequenceType } from '#utils';
+import { parseOSCSequence, type OSCSequenceType } from '#utils/xterm';
 
 export type { XtermOptions };
 
@@ -213,7 +213,7 @@ export class Terminal extends ABC {
   }
 
   public attach(instance: Containerkit) {
-    this._containerKitInstance = instance;
+    instance.attach(this);
   }
 
   /**
@@ -253,13 +253,13 @@ export class Terminal extends ABC {
   }
 
   public dispose() {
-    // Close the writer if it exists
+    super.dispose();
+
     if (this._shellProcessWriter) {
       void this._shellProcessWriter.close();
       this._shellProcessWriter = undefined;
     }
 
-    // Reject any pending writes
     this._writeQueue.forEach(op => {
       op.reject(new Error('Terminal disposed'));
     });

@@ -1,6 +1,8 @@
 import loader, { type Monaco } from '@monaco-editor/loader';
 import * as mncn from 'monaco-editor';
 
+export * from 'monaco-editor';
+
 self.MonacoEnvironment = {
   getWorker: function (_: string, label: string) {
     // create a new worker from the corresponding monaco editor worker script
@@ -37,3 +39,17 @@ export const monaco = await cancelable;
 
 export type { Monaco };
 export type { mncn };
+
+export function getOrCreateModel(
+  monaco: Monaco,
+  value: string,
+  language?: string,
+  path?: string,
+): mncn.editor.ITextModel {
+  const uri = path ? monaco.Uri.parse(path) : undefined;
+  let model = uri ? monaco.editor.getModel(uri) : undefined;
+
+  model ??= monaco.editor.createModel(value, language, uri);
+
+  return model;
+}

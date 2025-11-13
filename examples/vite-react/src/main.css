@@ -7,7 +7,31 @@ body {
 }
 
 #root {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+#container {
+  width: 100%;
+}
+
+.resize-handle {
+  background-color: #313131;
+  z-index: 1;
+}
+
+.resize-handle[data-panel-group-direction='vertical'] {
+  height: 1px;
+}
+
+.resize-handle[data-panel-group-direction='horizontal'] {
+  width: 1px;
+}
+
+#explorer {
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+  height: 100%;
+  padding: 1rem;
 }

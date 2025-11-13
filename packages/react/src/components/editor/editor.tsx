@@ -5,12 +5,11 @@ import { Editor as _Editor } from '@containerkit/core';
 
 import { useContainerkit } from '#context';
 
-export interface EditorProps {
-  editorOptions?: EditorOptions | undefined;
+export interface EditorProps extends EditorOptions {
   monacoOptions?: MonacoOptions | undefined;
 }
 
-export function Editor({ editorOptions, monacoOptions }: EditorProps) {
+export function Editor({ monacoOptions, ...editorOptions }: EditorProps) {
   const containerkitInstance = useContainerkit();
 
   const editorContainerRef = useRef<HTMLDivElement>(null);

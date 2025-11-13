@@ -2,7 +2,7 @@ import copy from 'rollup-plugin-copy';
 import { defineConfig } from 'tsdown';
 
 export default defineConfig({
-  entry: ['src/index.ts'],
+  entry: ['src/index.ts', 'src/xterm.ts', 'src/webcontainer.ts', 'src/monaco.ts'],
   format: ['esm'],
   target: 'es2020',
   sourcemap: true,

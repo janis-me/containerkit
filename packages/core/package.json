@@ -15,6 +15,18 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./monaco": {
+      "types": "./dist/monaco.d.ts",
+      "import": "./dist/monaco.js"
+    },
+    "./xterm": {
+      "types": "./dist/xterm.d.ts",
+      "import": "./dist/xterm.js"
+    },
+    "./webcontainer": {
+      "types": "./dist/webcontainer.d.ts",
+      "import": "./dist/webcontainer.js"
     }
   },
   "main": "dist/index.js",
