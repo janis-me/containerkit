@@ -14,7 +14,8 @@
     "deps": "pnpm taze",
     "format": "prettier --write .",
     "lint": "eslint --flag v10_config_lookup_from_file .",
-    "test": "vitest"
+    "test": "vitest",
+    "test:browser": "vitest --config=vitest.browser.config.ts"
   },
   "devDependencies": {
     "@containerkit/linter-config": "workspace:*",
@@ -22,14 +23,17 @@
     "@ianvs/prettier-plugin-sort-imports": "catalog:format",
     "@maz-ui/changelogen-monorepo": "catalog:script",
     "@playwright/test": "catalog:test",
+    "@vitejs/plugin-react": "catalog:test",
     "@vitest/browser": "catalog:test",
+    "@vitest/browser-playwright": "catalog:test",
     "eslint": "catalog:lint",
     "jiti": "catalog:lint",
     "prettier": "catalog:format",
     "prettier-plugin-packagejson": "catalog:format",
     "taze": "catalog:script",
     "typescript": "catalog:build",
-    "vitest": "catalog:test"
+    "vitest": "catalog:test",
+    "vitest-browser-react": "^2.0.2"
   },
   "packageManager": "pnpm@10.21.0",
   "engines": {

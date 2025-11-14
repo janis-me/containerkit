@@ -46,6 +46,7 @@ interface WriteOperation {
 }
 
 export class Terminal extends ABC {
+  protected _element: HTMLElement | undefined;
   protected _xterm: XTerm;
   protected _fitAddon: FitAddon;
   protected _webLinksAddon: WebLinksAddon;
@@ -226,7 +227,15 @@ export class Terminal extends ABC {
       throw new Error('Terminal instance is not attached to a Containerkit instance');
     }
 
-    element.classList.add('containerkit-terminal');
+    if (this._element) {
+      throw new Error('Editor is already initialized');
+    }
+
+    this._element = element;
+
+    if (!element.classList.contains('containerkit-containerkit')) {
+      element.classList.add('containerkit-terminal');
+    }
 
     this._xterm.open(element);
     this._fitAddon.fit();
@@ -255,6 +264,7 @@ export class Terminal extends ABC {
   public dispose() {
     super.dispose();
 
+    this._element = undefined;
     if (this._shellProcessWriter) {
       void this._shellProcessWriter.close();
       this._shellProcessWriter = undefined;

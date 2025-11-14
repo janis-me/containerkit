@@ -39,7 +39,7 @@
     "build": "tsdown",
     "build:watch": "tsdown --watch",
     "format": "prettier . --write",
-    "test": "pnpm -w test --project=containerkit",
+    "test": "pnpm -w test --project=react",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
