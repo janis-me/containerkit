@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.2.0...v0.3.0
+
+[compare changes](https://github.com/janis-me/containerkit/compare/v0.2.0...v0.3.0)
+
+### 🚀 Enhancements
+
+- Add imperative instance API to react components ([448b35a](https://github.com/janis-me/containerkit/commit/448b35a))
+
+### ❤️ Contributors
+
+- Janis Jansen ([@janis-me](https://github.com/janis-me))
+
 ## v0.1.0...v0.2.0
 
 [compare changes](https://github.com/janis-me/containerkit/compare/v0.1.0...v0.2.0)
