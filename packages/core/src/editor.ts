@@ -25,6 +25,9 @@ export type MonacoOptions = Omit<mncn.editor.IStandaloneEditorConstructionOption
 /**
  * Extra options for the Editor. Most will be passed to monaco in some way,
  * for example by creating a model with the given path/language.
+ *
+ * Usually, you want to only provide the path here and let Containerkit
+ * handle loading/saving the file content and language options
  */
 export interface EditorOptions {
   path?: string | undefined;

@@ -9,6 +9,14 @@ export interface EditorProps extends EditorOptions {
   monacoOptions?: MonacoOptions | undefined;
 }
 
+/**
+ * A code editor component powered by Monaco Editor and Containerkit.
+ * If used inside a ContainerkitProvider, the editor will automatically
+ * connect to the Containerkit instance provided.
+ *
+ * Usually, you want to only provide the `path` prop here and let Containerkit
+ * handle loading/saving the file content and language.
+ */
 export function Editor({ monacoOptions, path, language, value }: EditorProps) {
   const containerkitInstance = useContainerkit();
 
