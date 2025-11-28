@@ -10,6 +10,7 @@ export default defineConfig({
   publish: {
     access: 'public',
     safetyCheck: true,
+    buildCmd: 'pnpm build',
   },
 
   changelog: {
