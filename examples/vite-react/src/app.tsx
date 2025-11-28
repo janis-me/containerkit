@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 
+import type { TerminalHandle } from '@containerkit/react';
 import { Editor, Terminal } from '@containerkit/react';
 
 import { Explorer } from './components/explorer';
@@ -22,6 +23,20 @@ const TERMINAL_THEME = {
 
 function App() {
   const [selectedFile, setSelectedFile] = useState('/src/index.ts');
+  const terminalRef = useRef<TerminalHandle>(null);
+
+  useEffect(() => {
+    const to = setTimeout(() => {
+      const instance = terminalRef.current?.getInstance();
+      if (!instance) return;
+
+      void instance.write(`echo "test"\n`);
+    }, 3_000);
+
+    return () => {
+      clearTimeout(to);
+    };
+  }, []);
 
   return (
     <PanelGroup direction="horizontal" id="container">
@@ -37,6 +52,7 @@ function App() {
           <PanelResizeHandle className="resize-handle" />
           <Panel defaultSize={30} minSize={10}>
             <Terminal
+              ref={terminalRef}
               xtermOptions={{
                 theme: TERMINAL_THEME,
               }}
