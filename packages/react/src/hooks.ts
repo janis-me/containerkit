@@ -12,10 +12,20 @@ export function useFilesystemTree(base: string) {
   useEffect(() => {
     if (!containerkit) return;
 
-    containerkit.getFileSystemTree(base).then(setTree);
+    containerkit
+      .getFileSystemTree(base)
+      .then(setTree)
+      .catch((err: unknown) => {
+        console.error('Failed to get filesystem tree:', err);
+      });
 
-    const watcher = containerkit?.fs?.watch(base, { recursive: true }, async () => {
-      setTree(await containerkit.getFileSystemTree(base));
+    const watcher = containerkit.fs?.watch(base, { recursive: true }, () => {
+      containerkit
+        .getFileSystemTree(base)
+        .then(setTree)
+        .catch((err: unknown) => {
+          console.error('Failed to get filesystem tree:', err);
+        });
     });
 
     if (watcher) {

@@ -1,7 +1,8 @@
-import { createContext, use, useContext, useEffect, useReducer, useRef } from 'react';
+import { createContext, useContext, useEffect, useReducer, useRef } from 'react';
 
 import Containerkit from '@containerkit/core';
 
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 type Action = {
   type: 'setContainerkitInstance';
   data: { instance: Containerkit };
@@ -26,26 +27,31 @@ const ContainerkitStateContext = createContext<{ state: State; dispatch: Dispatc
 
 function containerkitReducer(state: State, action: Action): State {
   switch (action.type) {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     case 'setContainerkitInstance': {
       return { ...state, containerkitInstance: action.data.instance };
     }
     default: {
-      throw new Error(`Unhandled action type: ${(action as { type: unknown }).type}`);
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      throw new Error(`Unhandled action type: ${action.type}`);
     }
   }
 }
 
 function ContainerkitProvider({ children, instance, name }: ContainerkitProviderProps) {
   const [state, dispatch] = useReducer(containerkitReducer, DEFAULT_STATE);
-  const finalInstance = useRef(instance ? instance : new Containerkit());
+  const finalInstance = useRef(instance ?? new Containerkit());
 
   useEffect(() => {
-    if (!finalInstance.current) return;
-
     if (!finalInstance.current.booted && !finalInstance.current.booting) {
-      finalInstance.current.boot(name ?? 'default-project').then(() => {
-        dispatch({ type: 'setContainerkitInstance', data: { instance: finalInstance.current } });
-      });
+      finalInstance.current
+        .boot(name ?? 'default-project')
+        .then(() => {
+          dispatch({ type: 'setContainerkitInstance', data: { instance: finalInstance.current } });
+        })
+        .catch((err: unknown) => {
+          console.error('Failed to boot Containerkit instance:', err);
+        });
     } else if (finalInstance.current.booted) {
       dispatch({ type: 'setContainerkitInstance', data: { instance: finalInstance.current } });
     }

@@ -9,7 +9,7 @@ export interface EditorProps extends EditorOptions {
   monacoOptions?: MonacoOptions | undefined;
 }
 
-export function Editor({ monacoOptions, path, language, defaultValue }: EditorProps) {
+export function Editor({ monacoOptions, path, language, value }: EditorProps) {
   const containerkitInstance = useContainerkit();
 
   const editorContainerRef = useRef<HTMLDivElement>(null);
@@ -18,7 +18,7 @@ export function Editor({ monacoOptions, path, language, defaultValue }: EditorPr
   useEffect(() => {
     if (!editorContainerRef.current || !containerkitInstance) return;
 
-    editorInstanceRef.current = new _Editor(containerkitInstance, { path, language, defaultValue }, monacoOptions);
+    editorInstanceRef.current = new _Editor(containerkitInstance, { path, language, value }, monacoOptions);
     const disposePromise = editorInstanceRef.current
       .init(editorContainerRef.current)
       .then(disposeFn => {
@@ -30,7 +30,7 @@ export function Editor({ monacoOptions, path, language, defaultValue }: EditorPr
       });
 
     return () => {
-      disposePromise.then(disposeFn => {
+      void disposePromise.then(disposeFn => {
         disposeFn?.();
       });
     };

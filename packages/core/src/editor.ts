@@ -3,7 +3,6 @@ import type { Containerkit } from '#containerkit';
 import { getOrCreateModel, monaco, type mncn } from '#monaco';
 
 const DEFAULT_EDITOR_PATH = 'index.ts' as const;
-const DEFAULT_EDITOR_LANGUAGE = 'typescript' as const;
 
 export interface EditorListenerCallbacks {
   onMount: (editor: mncn.editor.IStandaloneCodeEditor) => void;
@@ -99,7 +98,7 @@ export class Editor extends ABC {
     this._editor = monaco.editor.create(element, {
       ...(this._monacoOptions ?? {}),
       model,
-      language: this._editorOptions.language as string,
+      language: this._editorOptions.language ?? model.getLanguageId(),
     });
     this._editor.setModel(model);
 
