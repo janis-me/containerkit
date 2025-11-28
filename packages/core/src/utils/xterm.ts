@@ -1,5 +1,3 @@
-import type { mncn, Monaco } from '#monaco';
-
 /**
  * OSC (Operating System Command) sequence types
  */

@@ -50,7 +50,7 @@ async function main() {
   }
 
   const containerkit = new Containerkit();
-  await containerkit.init('vite-vanilla-test');
+  await containerkit.boot('vite-vanilla-test');
 
   const cleanupEditor = await setupEditor(containerkit, root);
   const cleanupTerminal = await setupTerminal(containerkit, root);

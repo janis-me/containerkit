@@ -11,10 +11,10 @@ import './containerkit.css';
 export class Containerkit {
   protected _webContainerinstance: WebContainer | undefined;
 
-  protected _editors: Set<Editor> = new Set();
-  protected _terminals: Set<Terminal> = new Set();
+  protected _editors = new Set<Editor>();
+  protected _terminals = new Set<Terminal>();
 
-  protected _booting: boolean = false;
+  protected _booting = false;
 
   protected async _getSymlinkType(path: string) {
     if (!this._webContainerinstance) {

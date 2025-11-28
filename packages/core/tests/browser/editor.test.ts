@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
-import Containerkit, { Editor } from '#index';
+import { Editor } from '#index';
 
 describe('Editor', () => {
   describe('initialization', () => {
-    it('should create an Editor instance without props', async () => {
+    it('should create an Editor instance without props', () => {
       const editor = new Editor();
       expect(editor).toBeInstanceOf(Editor);
     });

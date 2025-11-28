@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useContainerkit, useFilesystemTree } from '@containerkit/react';
+import { useFilesystemTree } from '@containerkit/react';
 import type { FileSystemTree } from '@containerkit/react/webcontainer';
 
 export interface ExplorerProps {
@@ -59,7 +59,9 @@ function FileTreeNode({ name, node, level, path, onFileClick }: FileTreeNodeProp
     return (
       <div>
         <div
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
           style={{
             cursor: 'pointer',
             padding: '2px 0',
@@ -90,7 +92,9 @@ function FileTreeNode({ name, node, level, path, onFileClick }: FileTreeNodeProp
           alignItems: 'center',
           gap: '4px',
         }}
-        onClick={() => onFileClick(path)}
+        onClick={() => {
+          onFileClick(path);
+        }}
       >
         <span>📄</span>
         <span>{name}</span>

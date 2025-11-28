@@ -1,5 +1,5 @@
 {
   "extends": "@containerkit/typescript-config/base.json",
-  "include": ["*.config.ts", "src"],
+  "include": ["*.config.ts", "src", "tests"],
   "exclude": ["node_modules", "dist"]
 }
