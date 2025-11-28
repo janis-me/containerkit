@@ -1,6 +1,6 @@
 {
   "name": "@containerkit/repo",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A starter template for pnpm-based web repositories",
   "keywords": [
     "janis.me"
